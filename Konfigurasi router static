@@ -1,0 +1,48 @@
+Router 1
+
+LAN 1: 192.168.1.0/24
+
+Link ke Router 2: 10.10.10.1/30
+
+Router 2
+
+LAN 2: 192.168.2.0/24
+
+Link ke Router 1: 10.10.10.2/30
+
+router 1
+
+enable
+configure terminal
+
+interface fastethernet0/0
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+
+interface serial0/0/0
+ ip address 10.10.10.1 255.255.255.252
+ no shutdown
+
+ip route 192.168.2.0 255.255.255.0 10.10.10.2
+
+
+exit
+
+router 2
+
+enable
+configure terminal
+
+interface fastethernet0/0
+ ip address 192.168.2.1 255.255.255.0
+ no shutdown
+
+interface serial0/0/0
+ ip address 10.10.10.2 255.255.255.252
+ no shutdown
+
+ip route 192.168.1.0 255.255.255.0 10.10.10.1
+
+
+exit
+
