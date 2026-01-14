@@ -1,0 +1,46 @@
+Router 1
+
+LAN: 192.168.1.0/24
+
+Link antar router: 10.10.10.0/30
+
+AS EIGRP: 100
+
+Router 2
+
+LAN: 192.168.2.0/24
+
+Link antar router: 10.10.10.0/30
+
+AS EIGRP: 100
+
+router 1
+
+enable
+configure terminal
+
+interface fastethernet0/0
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+
+interface serial0/0/0
+ ip address 10.10.10.1 255.255.255.252
+ clock rate 64000
+ no shutdown
+
+exit
+
+router 2
+
+enable
+configure terminal
+
+interface fastethernet0/0
+ ip address 192.168.2.1 255.255.255.0
+ no shutdown
+
+interface serial0/0/0
+ ip address 10.10.10.2 255.255.255.252
+ no shutdown
+
+exit
